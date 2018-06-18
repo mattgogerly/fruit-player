@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
+import './css/Player.css'
 
 class Player extends Component {
 
   render() {
     return (
-      <Button outline color="info" size="lg" block onClick={this.props.onUnauthorize}>Sign out</Button>
+      <Container fluid={true}>
+        <Container fluid={true} className="playbackControls">
+          <p>Placeholder</p>
+        </Container>
+      </Container>
     )
   }
 }
