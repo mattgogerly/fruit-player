@@ -5,6 +5,28 @@ import SecretInfo from './secret/SecretInfo.js';
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.onAuthorize = this.onAuthorize.bind(this);
+    this.onUnauthorize = this.onUnauthorize.bind(this);
+  }
+
+  onAuthorize() {
+    this.musicKit.authorize().then(userToken => {
+      this.setState({uToken: userToken});
+    });
+  }
+
+  onUnauthorize() {
+    this.musicKit.unauthorize().then(() => {
+      this.forceUpdate();
+    });
+  }
+
+  error() {
+    console.log("error here");
+  }
+
   render() {
     let initialize = () => {
       window.MusicKit.configure({
@@ -16,9 +38,6 @@ class App extends Component {
       });
 
       this.musicKit = window.MusicKit.getInstance();
-
-      this.onAuthorize = this.musicKit.authorize();
-      this.onUnauthorize = this.musicKit.unAuthorize();
     }
 
     if (window.MusicKit) {
@@ -31,9 +50,9 @@ class App extends Component {
 
     if (this.musicKit) {
       if (this.musicKit.isAuthorized) {
-        return <Player />
+          return <Player onUnauthorize={this.onUnauthorize} />
       } else {
-        return <Login />
+        return <Login onAuthorize={this.onAuthorize} />
       }
     } else {
       return (

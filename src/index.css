@@ -1,5 +1,16 @@
+@font-face {
+  font-family: "San Francisco";
+  font-weight: 400;
+  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-regular-webfont.woff");
+}
+
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: San Francisco;
+  background: linear-gradient(225deg, #F6DCD9 0%, #d4d2fa 100%);
 }
