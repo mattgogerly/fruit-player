@@ -1,0 +1,23 @@
+.controls {
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.control {
+  margin-left: 10px;
+}
+
+.time {
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 50px;
+}
+
+.time-right {
+  font-size: 12px;
+  font-weight: bold;
+  margin-left: 40px;
+}
