@@ -8,6 +8,73 @@
   -moz-box-shadow: 0px -1px 3px 0px rgba(158,158,158,0.8);
   box-shadow: 0px -1px 3px 0px rgba(158,158,158,0.8);
   z-index: 1;
-  overflow: hidden;
   padding: 10px 15px;
+}
+
+.nowPlaying {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.artwork {
+  height: 70px;
+  width: 70px;
+  margin-right: 10px;
+  -moz-box-shadow: 0 0 1px #000;
+  -webkit-box-shadow: 0 0 1px #000;
+  box-shadow: 0 0 1px #000;
+}
+
+.songTitle {
+  display: block;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+.artistName {
+  display: block;
+  color: gray;
+}
+
+.progress {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 91px;
+  height: 3px;
+  z-index: 2;
+  border-radius: 0;
+  -webkit-transition: width .01s ease !important;
+  -moz-transition: width .01s ease !important;
+  -o-transition: width .01s ease !important;
+  transition: width .01s ease !important;
+  background-color: #D0D0D0;
+}
+
+.progress:hover {
+  height: 6px;
+}
+
+.seekerTooltip {
+  background-color: #555;
+  width: 60px;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  z-index: 3;
+}
+
+.seekerTooltip::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
 }
