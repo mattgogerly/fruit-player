@@ -8,7 +8,6 @@ class PlaybackControls extends Component {
     super(props);
 
     this.musicKit = window.MusicKit.getInstance();
-
     this.state = {
       playbackState: window.MusicKit.PlaybackStates.none
     }

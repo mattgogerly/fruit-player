@@ -30,9 +30,9 @@ class Player extends Component {
 
     this.formatTime = this.formatTime.bind(this);
 
-    this.search("taylor swift enchanted").then(items => {
+    /*this.search("taylor swift enchanted").then(items => {
       this.queue(items.songs.data);
-    });
+    });*/
   }
 
   mediaPlaybackError = (event) => {
