@@ -124,24 +124,28 @@ class Player extends Component {
 
   render() {
     const tooltipStyle = {
-      position: 'absolute',
-      left: (this.state.tooltipLeft - 25) + 'px', // subtract 50% of width + padding
-      bottom: '105px',
+      position: 'relative',
+      bottom: '6px',
+      left: (this.state.tooltipLeft - 30) + 'px', // subtract 50% of width + padding
       display: this.state.hover ? 'inline-block' : 'none'
     }
 
     return (
       <Container fluid={true}>
-        <div className="seekerTooltip" style={tooltipStyle}>
-          <span>{this.formatTime(this.calculateTimeAsPercentage(this.state.tooltipLeft))}</span>
-        </div>
-        <Progress
+        <div className="progressBar"
           onMouseOver={e => this.handleMouseIn(e)}
           onMouseOut={e => this.handleMouseOut(e)}
           onMouseMove={e => this.handleMouseMove(e)}
-          onClick={e => this.skipToTime(e)} color="danger"
-          value={this.state.playbackTime.currentPlaybackTime / this.state.playbackTime.currentPlaybackDuration * 100}
-        />
+          onClick={e => this.skipToTime(e)}
+        >
+          <div className="seekerTooltip" style={tooltipStyle}>
+            <span>{this.formatTime(this.calculateTimeAsPercentage(this.state.tooltipLeft))}</span>
+          </div>
+          <Progress
+            color="danger"
+            value={this.state.playbackTime.currentPlaybackTime / this.state.playbackTime.currentPlaybackDuration * 100}
+          />
+        </div>
         <Row>
           <Col xs="2">
             {this.getNowPlaying()}
