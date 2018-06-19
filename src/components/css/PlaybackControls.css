@@ -8,6 +8,20 @@
 
 .control {
   margin-left: 10px;
+  color: grey;
+  background: none;
+  border: none;
+}
+
+.control:hover {
+  color: #383838;
+  background: none;
+  border: none;
+}
+
+.control:active {
+  color: #383838 !important;
+  background: #fff !important;
 }
 
 .time {

@@ -44,7 +44,7 @@ class PlaybackControls extends Component {
       )
     } else {
       return (
-          <Button className="control" onClick={this.pause}><FontAwesome name="pause"  size="2x"/></Button>
+          <Button className="control" onClick={this.pause}><FontAwesome name="pause" size="2x"/></Button>
       )
     }
   }

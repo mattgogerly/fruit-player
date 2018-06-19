@@ -21,6 +21,8 @@ class Player extends Component {
       tooltipLeft: 0
     }
 
+    this.mediaPlaybackError = this.mediaPlaybackError.bind(this);
+    this.musicKit.addEventListener(window.MusicKit.Events.mediaPlaybackError, this.mediaPlaybackError);
     this.mediaItemDidChange = this.mediaItemDidChange.bind(this);
     this.musicKit.addEventListener(window.MusicKit.Events.mediaItemDidChange, this.mediaItemDidChange);
     this.playbackTimeDidChange = this.playbackTimeDidChange.bind(this);
@@ -33,21 +35,8 @@ class Player extends Component {
     });
   }
 
-  handleMouseIn(e) {
-    e.persist();
-
-    this.setState({ hover: true, tooltipLeft: e.pageX });
-  }
-
-  handleMouseOut(e) {
-    e.persist();
-    this.setState({ hover: false });
-  }
-
-  handleMouseMove(e) {
-    e.persist();
-    console.log(e.pageX);
-    this.setState({ tooltipLeft: e.pageX });
+  mediaPlaybackError = (event) => {
+    console.error(event);
   }
 
   mediaItemDidChange = (event) => {
@@ -69,11 +58,7 @@ class Player extends Component {
   queue(descriptor) {
     this.musicKit.setQueue(descriptor).then(items => {
       items.items.forEach(i => i.sourceId = i.id);
-      this.musicKit.player.changeToMediaItem(items.item(descriptor.startPosition || 0)).then(
-        () => null,
-        err => console.error(err)
-      ),
-    (err) => console.error(err)
+      this.musicKit.player.changeToMediaItem(items.item(descriptor.startPosition || 0));
     });
   }
 
@@ -120,6 +105,22 @@ class Player extends Component {
     let widthClicked = e.pageX;
     var calc = this.calculateTimeAsPercentage(widthClicked);
     this.musicKit.player.seekToTime(calc);
+  }
+
+  handleMouseIn(e) {
+    e.persist();
+
+    this.setState({ hover: true, tooltipLeft: e.pageX });
+  }
+
+  handleMouseOut(e) {
+    e.persist();
+    this.setState({ hover: false });
+  }
+
+  handleMouseMove(e) {
+    e.persist();
+    this.setState({ tooltipLeft: e.pageX });
   }
 
   render() {
