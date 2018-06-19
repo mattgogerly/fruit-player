@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Player from './components/Player.js';
+import Home from './components/Home.js';
 import Login from './components/Login.js';
 import SecretInfo from './secret/SecretInfo.js';
 
@@ -50,7 +50,7 @@ class App extends Component {
 
     if (this.musicKit) {
       if (this.musicKit.isAuthorized) {
-          return <Player onUnauthorize={this.onUnauthorize} />
+          return <Home onUnauthorize={this.onUnauthorize} />
       } else {
         return <Login onAuthorize={this.onAuthorize} />
       }
