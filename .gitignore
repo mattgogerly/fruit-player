@@ -22,3 +22,4 @@ yarn-error.log*
 *.p8
 token.js
 src/secret/SecretInfo.js
+public/musickit.js
