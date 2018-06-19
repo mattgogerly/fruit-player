@@ -37,17 +37,6 @@ class PlaybackControls extends Component {
     this.musicKit.player.skipToNextItem();
   }
 
-  formatTime(value) {
-    var minutes = Math.floor(value / 60);
-    var seconds = value - (minutes * 60);
-
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-
-    return minutes + ":" + seconds;
-  }
-
   getPlayPause = () => {
     if (this.state.playbackState !== window.MusicKit.PlaybackStates.playing) {
       return (
@@ -63,11 +52,11 @@ class PlaybackControls extends Component {
   render() {
     return (
       <div className="controls">
-        <span className="time">{this.formatTime(this.props.currentPlaybackTime)}</span>
+        <span className="time">{this.props.formatTime(this.props.currentPlaybackTime)}</span>
         <Button className="control" onClick={this.previous}><FontAwesome name="backward" size="2x" /></Button>
         {this.getPlayPause()}
         <Button className="control" onClick={this.next}><FontAwesome name="forward" size="2x"/></Button>
-        <span className="time-right">{this.formatTime(this.props.currentPlaybackDuration)}</span>
+        <span className="time-right">{this.props.formatTime(this.props.currentPlaybackDuration)}</span>
       </div>
     )
   }
