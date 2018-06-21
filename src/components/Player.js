@@ -29,10 +29,6 @@ class Player extends Component {
     this.musicKit.addEventListener(window.MusicKit.Events.playbackTimeDidChange, this.playbackTimeDidChange);
 
     this.formatTime = this.formatTime.bind(this);
-
-    /*this.search("taylor swift enchanted").then(items => {
-      this.queue(items.songs.data);
-    });*/
   }
 
   mediaPlaybackError = (event) => {
@@ -56,9 +52,11 @@ class Player extends Component {
   }
 
   queue(descriptor) {
-    this.musicKit.setQueue(descriptor).then(items => {
+    this.musicKit.setQueue(descriptor).then((items) => {
       items.items.forEach(i => i.sourceId = i.id);
       this.musicKit.player.changeToMediaItem(items.item(descriptor.startPosition || 0));
+    }, (err) => {
+      console.error(err);
     });
   }
 
@@ -67,7 +65,7 @@ class Player extends Component {
       return (
         <div className="nowPlaying">
           <div>
-            <img className="artwork" src={this.formatURL(this.state.mediaItem.attributes.artwork)} alt="" />
+            <img className="playingArtwork" src={this.formatURL(this.state.mediaItem.attributes.artwork)} alt="" />
           </div>
           <div>
             <span className="songTitle">{this.state.mediaItem.title}</span>
@@ -76,7 +74,7 @@ class Player extends Component {
         </div>
       )
     } else {
-      return "Placeholder";
+      return <div className="placeholder"></div>;
     }
   }
 
