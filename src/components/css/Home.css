@@ -1,19 +1,59 @@
-body {
-  margin-top: 0 !important;
+@media (max-width: 1200px) {
+  .sidebar { display: none; }
 }
 
-.sideBar {
+html {
+  margin: 0;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.wrapper {
+  padding-left: 10px;
+  height: calc(100% - 110px);
+}
+
+.spinner {
+  text-align: center;
+}
+
+.spinner > img {
+  height: 50px;
+  width: 50px;
+}
+
+.sidebar {
+  position: fixed;
   background-color: #fff;
-  height: 100vh;
+  height: 100%;
+  min-width: 250px;
   -webkit-box-shadow: 1px 0px 3px 0px rgba(158,158,158,0.8);
   -moz-box-shadow: 1px 0px 3px 0px rgba(158,158,158,0.8);
   box-shadow: 1px -1px 3px 0px rgba(158,158,158,0.8);
   padding: 20px 15px;
 }
 
-.sideBar h5 {
+.sidebar h5 {
   font-weight: bold;
   font-size: 18pt;
+}
+
+.column {
+  padding: 0;
+}
+
+.mainContent {
+  margin-bottom: 110px;
+  height: 100%;
+  margin-left: 30px;
+  background: #fff;
+  padding: 10px;
+  -webkit-box-shadow: 0px 0px 1px 0px rgba(158,158,158,0.8);
+  -moz-box-shadow: 0px 0px 1px 0px rgba(158,158,158,0.8);
+  box-shadow: 0px 0px 1px 0px rgba(158,158,158,0.8);
 }
 
 .nav {
@@ -24,17 +64,21 @@ body {
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  font-size: 14pt;
+  font-size: 12pt;
   padding: 5px 10px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
   margin-bottom: 10px;
 }
 
+.logout {
+  text-align: center;
+}
+
 .playbackControls {
   position: fixed;
-  left: 0;
-  bottom: 0;
+  bottom: 0px;
+  width: 100%;
   height: 90px;
   background-color: #fff;
   -webkit-box-shadow: 0px -1px 3px 0px rgba(158,158,158,0.8);
