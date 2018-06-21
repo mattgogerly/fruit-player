@@ -13,7 +13,7 @@ class Login extends Component {
               <p className="lead">Fruit Player is a web player for Apple Music built with React and Apple MusicKit.</p>
               <hr className="my-2" />
               <p>It&apos;s currently under development as a side project by <a href="https://github.com/mattgogerly">Matt Gogerly</a>,
-              a student at the University of Southampton. Please expect there to be bugs
+              a student at the University of Southampton. Expect there to be bugs
               aplenty; please raise anything you find as an <a href="TODO">issue on GitHub</a>.</p>
 
               <p className="mt-5 mb-5 text-center">
