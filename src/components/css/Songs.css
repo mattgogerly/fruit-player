@@ -1,0 +1,33 @@
+.title {
+  font-weight: bold;
+}
+
+.table > tbody > tr:hover {
+  cursor: pointer;
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.tableImg {
+  width: 5%;
+}
+
+.tableTitle {
+  width: 35%;
+}
+
+.tableOther {
+  width: 25;
+}
+
+.tableDuration {
+  width: 10%;
+  text-align: center;
+}
+
+.artwork {
+  width: 40px;
+  height: 40px;
+}
