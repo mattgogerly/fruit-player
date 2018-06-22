@@ -1,0 +1,37 @@
+.artwork {
+  width: 180px;
+  height: 180px;
+}
+
+.albums {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.album {
+  flex-grow: 1;
+  min-width: 12%;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.albumTitle {
+  margin-top: 5px;
+  font-size: 10pt;
+  font-weight: bold;
+  max-width: 180px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.artist {
+  font-size: 10pt;
+  color: grey;
+  max-width: 180px;
+}

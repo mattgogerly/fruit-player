@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Nav, NavLink, Button } from 'reactstrap';
 import Player from './Player.js';
 import Songs from './Songs.js';
+import Albums from './Albums.js';
 import './css/Home.css';
 import spinner from '../spinner.gif';
 
@@ -41,6 +42,12 @@ class Home extends Component {
     switch (type) {
       case 'songs':
         this.getContent('songs');
+        break;
+      case 'albums':
+        this.getContent('albums');
+        break;
+      case 'artists':
+        this.getContent('artists');
         break;
       default:
         break;
@@ -88,6 +95,78 @@ class Home extends Component {
       }
 
       getSongs();
+    } else if (type === 'albums') {
+      var albums = [];
+
+      let getAlbums = (start = 0) => {
+        this.api.albums(null, {
+          offset: start,
+          limit: 100
+        }).then((grouped) => {
+          albums = albums.concat(grouped);
+
+          if (!this.state.results) {
+            this.setState({
+              results: {
+                type: 'albums',
+                albums: albums
+              }
+            });
+          } else {
+            this.setState({
+              results: {
+                type: 'albums',
+                albums: albums
+              }
+            });
+          }
+
+          this.setState({loading: 'false'});
+
+          if (grouped.length === 100) {
+            getAlbums(start + 100);
+            this.setState({loading: 'true'});
+          }
+        });
+      }
+
+      getAlbums();
+    } else if (type === 'artists') {
+      var artists = [];
+
+      let getArtists = (start = 0) => {
+        this.api.artists(null, {
+          offset: start,
+          limit: 100
+        }).then((grouped) => {
+          artists = artists.concat(grouped);
+
+          if (!this.state.results) {
+            this.setState({
+              results: {
+                type: 'artists',
+                artists: artists
+              }
+            });
+          } else {
+            this.setState({
+              results: {
+                type: 'artists',
+                artists: artists
+              }
+            });
+          }
+
+          this.setState({loading: 'false'});
+
+          if (grouped.length === 100) {
+            getArtists(start + 100);
+            this.setState({loading: 'true'});
+          }
+        });
+      }
+
+      getArtists();
     }
   }
 
@@ -95,7 +174,7 @@ class Home extends Component {
     if (this.state.loading === 'true') {
       return (
         <div className="spinner">
-          <img src={spinner} alt='' />
+          <img src={spinner} alt='loading' />
         </div>
       )
     } else {
@@ -107,6 +186,21 @@ class Home extends Component {
             var songs = this.state.results.songs;
             return (
               <Songs songs={songs} queue={this.queue} />
+            )
+          }
+        } else if (type === 'albums') {
+          if (this.state.results.albums) {
+            var albums = this.state.results.albums;
+            return (
+              <Albums albums={albums} queue={this.queue} />
+            )
+          }
+        } else if (type === 'artists') {
+          if (this.state.results.artists) {
+            var artists = this.state.results.artists;
+            return (
+              // TODO
+              <div></div>
             )
           }
         }
@@ -136,8 +230,8 @@ class Home extends Component {
               <hr className="my-2" />
               <Nav vertical>
                 <NavLink href="#" onClick={e => this.getContentType(e, 'songs')}>Songs</NavLink>
-                <NavLink href="#">Albums</NavLink>
-                <NavLink href="#">Arists</NavLink>
+                <NavLink href="#" onClick={e => this.getContentType(e, 'albums')}>Albums</NavLink>
+                <NavLink href="#" onClick={e => this.getContentType(e, 'artists')}>Arists</NavLink>
               </Nav>
               <h5 className="display-5">Playlists</h5>
               <hr className="my-2" />
