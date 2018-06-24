@@ -231,7 +231,7 @@ class Home extends Component {
               <Nav vertical>
                 <NavLink href="#" onClick={e => this.getContentType(e, 'songs')}>Songs</NavLink>
                 <NavLink href="#" onClick={e => this.getContentType(e, 'albums')}>Albums</NavLink>
-                <NavLink href="#" onClick={e => this.getContentType(e, 'artists')}>Arists</NavLink>
+                <NavLink href="#" onClick={e => this.getContentType(e, 'artists')}>Artists</NavLink>
               </Nav>
               <h5 className="display-5">Playlists</h5>
               <hr className="my-2" />
