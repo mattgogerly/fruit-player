@@ -15,15 +15,41 @@
 }
 
 .tableTitle {
-  width: 35%;
+  width: 30%;
+  max-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.tableOther {
-  width: 25;
+.tableArtist {
+  width: 20%;
+  max-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.tableAlbum {
+  width: 25%;
+  max-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .tableDuration {
-  width: 10%;
+  max-width: 6%;
+  text-align: center;
+}
+
+.tableQueue {
+  width: 6%;
+  text-align: center;
+}
+
+.tableLibrary {
+  width: 6%;
   text-align: center;
 }
 

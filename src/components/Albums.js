@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
-import FontAwesome from 'react-fontawesome';
 import './css/Albums.css'
 
 class Albums extends Component {

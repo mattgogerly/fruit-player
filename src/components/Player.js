@@ -102,7 +102,7 @@ class Player extends Component {
     e.persist();
 
     // Check a song is actually loaded
-    if (this.musicKit.player.nowPlayingItem) {
+    if (this.musicKit.player.nowPlayingItem || this.musicKit.player.isPlaying) {
       let widthClicked = e.pageX;
       var calc = this.calculateTimeAsPercentage(widthClicked);
       this.musicKit.player.seekToTime(calc);
@@ -128,7 +128,7 @@ class Player extends Component {
     const tooltipStyle = {
       position: 'relative',
       bottom: '6px',
-      left: (this.state.tooltipLeft - 30) + 'px', // subtract 50% of width + padding
+      left: (this.state.tooltipLeft - 30) + 'px', // subtract 50% of width of the tooltip + padding
       display: this.state.hover ? 'inline-block' : 'none'
     }
 
