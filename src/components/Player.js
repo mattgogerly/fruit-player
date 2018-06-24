@@ -100,14 +100,17 @@ class Player extends Component {
 
   skipToTime(e) {
     e.persist();
-    let widthClicked = e.pageX;
-    var calc = this.calculateTimeAsPercentage(widthClicked);
-    this.musicKit.player.seekToTime(calc);
+
+    // Check a song is actually loaded
+    if (this.musicKit.player.nowPlayingItem) {
+      let widthClicked = e.pageX;
+      var calc = this.calculateTimeAsPercentage(widthClicked);
+      this.musicKit.player.seekToTime(calc);
+    }
   }
 
   handleMouseIn(e) {
     e.persist();
-
     this.setState({ hover: true, tooltipLeft: e.pageX });
   }
 
