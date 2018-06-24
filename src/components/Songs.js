@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Container, Table } from 'reactstrap';
-import FontAwesome from 'react-fontawesome';
-import './css/Songs.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart, faCheck, faPlus, faClock, faList } from '@fortawesome/free-solid-svg-icons';
+import './css/Songs.css';
+
+library.add(faHeart, faCheck, faPlus, faClock, faList);
 
 class Songs extends Component {
 
@@ -43,33 +47,53 @@ class Songs extends Component {
     );
   }
 
+  prependQueue(song) {
+    // submitted to apple
+    this.musicKit.player.queue.prepend(new window.MusicKit.MediaItem(song));
+  }
+
+  getLibraryIcon(song) {
+    if (song.type === 'library-songs') {
+      return (
+        <FontAwesomeIcon icon={['fas', 'check']} />
+      )
+    } else {
+      return (
+        <FontAwesomeIcon icon={['fas', 'plus']} />
+      )
+    }
+  }
+
   render() {
     var songs = this.props.songs;
 
     return (
       <Container fluid={true}>
         <h4 className="display-4 title">Songs</h4>
-        <hr className="my-2" />
         <Table hover>
           <thead>
             <tr>
               <th className="tableImg"></th>
               <th className="tableTitle">Title</th>
-              <th className="tableOther">Artist</th>
-              <th className="tableOther">Album</th>
-              <th className="tableDuration"><FontAwesome name="clock" /></th>
+              <th className="tableArtist">Artist</th>
+              <th className="tableAlbum">Album</th>
+              <th className="tableDuration"><FontAwesomeIcon icon={faClock} /></th>
+              <th className="tableLibrary">Library</th>
+              <th className="tableQueue">Queue</th>
             </tr>
           </thead>
           <tbody>
             {
               songs.map((song, index) => {
                 return (
-                  <tr key={index} onClick={() => this.prepareQueue(song)}>
+                  <tr key={index}>
                     <td><img src={this.formatArtworkUrl(song.attributes.artwork, 40, 40)} alt="" /></td>
-                    <td>{song.attributes.name}</td>
-                    <td>{song.attributes.artistName}</td>
-                    <td>{song.attributes.albumName}</td>
+                    <td className="tableTitle" onClick={() => this.prepareQueue(song)}>{song.attributes.name}</td>
+                    <td className="tableArtist">{song.attributes.artistName}</td>
+                    <td className="tableAlbum">{song.attributes.albumName}</td>
                     <td className="tableDuration">{this.formatMillis(song.attributes.durationInMillis)}</td>
+                    <td className="tableLibrary">{this.getLibraryIcon(song)}</td>
+                    <td className="tableQueue" onClick={() => this.prependQueue(song)}><FontAwesomeIcon icon='list' /></td>
                   </tr>
                 )
               }
